@@ -1,0 +1,2 @@
+{"timestamp":"2026-11-24T10:13:06.816054Z","level":"WARN","fields":{"message":"appid missing, rid: 6b056355-750ff07a-38bc0a85","code":40201,"msg":"WeChat mini login error"},"target":"afaster::state::wxlogin"}
+{"timestamp":"2026-11-24T10:13:06.816757Z","level":"WARN","fields":{"message":"AFaster wxlogin rejected the mini-program login","error":"[40201] appid missing, rid: 6b056355-750ff07a-38bc0a85"},"target":"backend::services::auth"}

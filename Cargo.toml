@@ -1,0 +1,43 @@
+[package]
+name = "backend"
+version = "0.1.0"
+edition = "2024"
+default-run = "backend"
+
+[dependencies]
+afast = { version = "0.1.26", features = ["http", "js"] }
+afastdata = "0.0.10"
+afaster = { version = "0.0.16", default-features = false, features = [
+    "afast-http",
+    "afast-js",
+    "log",
+    "orm-migrate",
+    "orm-admin",
+    "wx-login-mini",
+    "wx-cloudrun",
+] }
+afastorm = { version = "0.0.3", default-features = false, features = [
+    "derive",
+    "migrate",
+] }
+base64 = "0.22"
+getrandom = "0.4"
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.11"
+sqlx = { version = "0.9", default-features = false, features = ["runtime-tokio", "macros"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+tracing = "0.1"
+
+[features]
+default = ["db-mysql"]
+db-mysql = [
+    "afaster/orm-mysql",
+    "afastorm/mysql",
+    "sqlx/mysql",
+    "sqlx/tls-rustls-ring-native-roots",
+]
+test-sqlite = [
+    "afaster/orm-sqlite",
+    "afastorm/sqlite",
+    "sqlx/sqlite",
+]

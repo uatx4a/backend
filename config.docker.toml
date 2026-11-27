@@ -1,0 +1,21 @@
+[backend]
+host = "0.0.0.0"
+port = 6080
+
+[wxlogin]
+base_url = "http://api.weixin.qq.com"
+mini_id = ""
+mini_secret = ""
+
+[wxcloudrun]
+env = "replace-with-cloudbase-env-id"
+prefix = "items"
+url_expire = 3600
+
+[orm-mysql]
+host = "sh-cynosdbmysql-grp-kul24xb0.sql.tencentcdb.com"
+port = 26333
+user = ""
+pass = ""
+name = "develop"
+url = "/admin"

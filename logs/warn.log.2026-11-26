@@ -1,0 +1,1 @@
+{"timestamp":"2026-11-26T11:59:33.852227Z","level":"WARN","fields":{"message":"acquired connection, but time to acquire exceeded slow threshold","acquired_after_secs":2.9119639,"slow_acquire_threshold_secs":2.0},"target":"sqlx::pool::acquire"}

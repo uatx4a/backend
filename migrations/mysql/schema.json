@@ -1,0 +1,349 @@
+{
+  "format_version": 1,
+  "driver": "mysql",
+  "models": [
+    {
+      "table_name": "users",
+      "create_sql": "CREATE TABLE IF NOT EXISTS `users` (`user_id` VARCHAR(255) PRIMARY KEY, `openid` VARCHAR(255) UNIQUE NOT NULL, `nickname` VARCHAR(255) NOT NULL, `phone_number` VARCHAR(255) UNIQUE, `real_name_status` VARCHAR(255) NOT NULL, `created_at_ms` BIGINT NOT NULL, `updated_at_ms` BIGINT NOT NULL)",
+      "fields": [
+        {
+          "column_name": "user_id",
+          "definition": "`user_id` VARCHAR(255) PRIMARY KEY",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "openid",
+          "definition": "`openid` VARCHAR(255) UNIQUE NOT NULL",
+          "nullable": false,
+          "unique": true
+        },
+        {
+          "column_name": "nickname",
+          "definition": "`nickname` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "phone_number",
+          "definition": "`phone_number` VARCHAR(255) UNIQUE",
+          "nullable": true,
+          "unique": true
+        },
+        {
+          "column_name": "real_name_status",
+          "definition": "`real_name_status` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "created_at_ms",
+          "definition": "`created_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "updated_at_ms",
+          "definition": "`updated_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "table_name": "auth_sessions",
+      "create_sql": "CREATE TABLE IF NOT EXISTS `auth_sessions` (`token_hash` VARCHAR(255) PRIMARY KEY, `user_id` VARCHAR(255) NOT NULL, `expires_at_ms` BIGINT NOT NULL, `created_at_ms` BIGINT NOT NULL, `revoked_at_ms` BIGINT)",
+      "fields": [
+        {
+          "column_name": "token_hash",
+          "definition": "`token_hash` VARCHAR(255) PRIMARY KEY",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "user_id",
+          "definition": "`user_id` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "expires_at_ms",
+          "definition": "`expires_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "created_at_ms",
+          "definition": "`created_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "revoked_at_ms",
+          "definition": "`revoked_at_ms` BIGINT",
+          "nullable": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "table_name": "user_agreement_acceptances",
+      "create_sql": "CREATE TABLE IF NOT EXISTS `user_agreement_acceptances` (`acceptance_id` VARCHAR(255) PRIMARY KEY, `user_id` VARCHAR(255) NOT NULL, `agreement_version` VARCHAR(255) NOT NULL, `accepted_at_ms` BIGINT NOT NULL)",
+      "fields": [
+        {
+          "column_name": "acceptance_id",
+          "definition": "`acceptance_id` VARCHAR(255) PRIMARY KEY",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "user_id",
+          "definition": "`user_id` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "agreement_version",
+          "definition": "`agreement_version` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "accepted_at_ms",
+          "definition": "`accepted_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "table_name": "uploaded_assets",
+      "create_sql": "CREATE TABLE IF NOT EXISTS `uploaded_assets` (`asset_id` VARCHAR(255) PRIMARY KEY, `user_id` VARCHAR(255) NOT NULL, `file_md5` VARCHAR(255) NOT NULL, `file_id` VARCHAR(255) NOT NULL, `extension` VARCHAR(255) NOT NULL, `upload_status` VARCHAR(255) NOT NULL, `created_at_ms` BIGINT NOT NULL, `updated_at_ms` BIGINT NOT NULL)",
+      "fields": [
+        {
+          "column_name": "asset_id",
+          "definition": "`asset_id` VARCHAR(255) PRIMARY KEY",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "user_id",
+          "definition": "`user_id` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "file_md5",
+          "definition": "`file_md5` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "file_id",
+          "definition": "`file_id` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "extension",
+          "definition": "`extension` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "upload_status",
+          "definition": "`upload_status` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "created_at_ms",
+          "definition": "`created_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "updated_at_ms",
+          "definition": "`updated_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "table_name": "items",
+      "create_sql": "CREATE TABLE IF NOT EXISTS `items` (`item_id` VARCHAR(255) PRIMARY KEY, `owner_user_id` VARCHAR(255) NOT NULL, `title` VARCHAR(255) NOT NULL, `category_code` VARCHAR(255) NOT NULL, `condition_code` VARCHAR(255) NOT NULL, `description` VARCHAR(255) NOT NULL, `valuation_method` VARCHAR(255) NOT NULL, `value_low_fen` BIGINT NOT NULL, `value_high_fen` BIGINT NOT NULL, `valuation_source` VARCHAR(255) NOT NULL, `valuation_expires_at_ms` BIGINT NOT NULL, `city_id` VARCHAR(255) NOT NULL, `city_name` VARCHAR(255) NOT NULL, `remote_only_face_to_face` TINYINT(1) NOT NULL, `fulfillment_modes` VARCHAR(255) NOT NULL, `serial_masked` VARCHAR(255) NOT NULL, `serial_verified` TINYINT(1) NOT NULL, `item_status` VARCHAR(255) NOT NULL, `created_at_ms` BIGINT NOT NULL, `updated_at_ms` BIGINT NOT NULL)",
+      "fields": [
+        {
+          "column_name": "item_id",
+          "definition": "`item_id` VARCHAR(255) PRIMARY KEY",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "owner_user_id",
+          "definition": "`owner_user_id` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "title",
+          "definition": "`title` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "category_code",
+          "definition": "`category_code` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "condition_code",
+          "definition": "`condition_code` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "description",
+          "definition": "`description` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "valuation_method",
+          "definition": "`valuation_method` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "value_low_fen",
+          "definition": "`value_low_fen` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "value_high_fen",
+          "definition": "`value_high_fen` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "valuation_source",
+          "definition": "`valuation_source` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "valuation_expires_at_ms",
+          "definition": "`valuation_expires_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "city_id",
+          "definition": "`city_id` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "city_name",
+          "definition": "`city_name` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "remote_only_face_to_face",
+          "definition": "`remote_only_face_to_face` TINYINT(1) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "fulfillment_modes",
+          "definition": "`fulfillment_modes` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "serial_masked",
+          "definition": "`serial_masked` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "serial_verified",
+          "definition": "`serial_verified` TINYINT(1) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "item_status",
+          "definition": "`item_status` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "created_at_ms",
+          "definition": "`created_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "updated_at_ms",
+          "definition": "`updated_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "table_name": "item_images",
+      "create_sql": "CREATE TABLE IF NOT EXISTS `item_images` (`image_id` VARCHAR(255) PRIMARY KEY, `item_id` VARCHAR(255) NOT NULL, `file_md5` VARCHAR(255) NOT NULL, `file_id` VARCHAR(255) NOT NULL, `sort_order` INT NOT NULL, `created_at_ms` BIGINT NOT NULL)",
+      "fields": [
+        {
+          "column_name": "image_id",
+          "definition": "`image_id` VARCHAR(255) PRIMARY KEY",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "item_id",
+          "definition": "`item_id` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "file_md5",
+          "definition": "`file_md5` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "file_id",
+          "definition": "`file_id` VARCHAR(255) NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "sort_order",
+          "definition": "`sort_order` INT NOT NULL",
+          "nullable": false,
+          "unique": false
+        },
+        {
+          "column_name": "created_at_ms",
+          "definition": "`created_at_ms` BIGINT NOT NULL",
+          "nullable": false,
+          "unique": false
+        }
+      ]
+    }
+  ],
+  "indexes": [
+    {
+      "name": "uq_uploaded_assets_user_id_file_md5",
+      "create_sql": "CREATE UNIQUE INDEX `uq_uploaded_assets_user_id_file_md5` ON `uploaded_assets` (`user_id`, `file_md5`)",
+      "drop_sql": "DROP INDEX `uq_uploaded_assets_user_id_file_md5` ON `uploaded_assets`"
+    }
+  ]
+}
